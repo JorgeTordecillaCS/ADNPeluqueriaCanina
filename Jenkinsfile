@@ -41,7 +41,7 @@ pipeline{
 			 	steps{
 			 		echo '------------>Analisis de código estático<------------'
 			 		  withSonarQubeEnv('Sonar') {
-                         sh "${tool name: 'SonarScanner', type: 'hudson.plugins.sonar.SonarRunnerInstallation'}/bin/sonar-scanner -Dsonar.projectKey=ADN:PeluqueriaCanina.jorge.tordecilla -Dsonar.projectName=ADN:PeluqueriaCanina.jorge.tordecills -Dproject.settings=./sonar-project.properties"
+                         sh "${tool name: 'SonarScanner', type: 'hudson.plugins.sonar.SonarRunnerInstallation'}/bin/sonar-scanner -Dsonar.projectKey=ADN:PeluqueriaCanina.jorge.tordecilla -Dsonar.projectName=ADN:PeluqueriaCanina.jorge.tordecilla -Dproject.settings=./sonar-project.properties"
                       }
 			 	}
 			 }
