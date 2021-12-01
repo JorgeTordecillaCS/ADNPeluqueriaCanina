@@ -31,8 +31,11 @@ export class Cita extends CostoCita {
   }
 
   private obtenerFinalCita(hora: string) {
-    const parcialHora = parseInt(hora.split(':')[0]) + 1;
-    return parcialHora <= 9 ? `0${parcialHora}:00` : `${parcialHora}:00`;
+    const HORA_MENOR_DIES = 9;
+    const parcialHora = parseInt(hora.split(':')[0], 10) + 1;
+    return parcialHora <= HORA_MENOR_DIES
+      ? `0${parcialHora}:00`
+      : `${parcialHora}:00`;
   }
 
   get raza(): string {

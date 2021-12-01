@@ -38,7 +38,10 @@ export class RepositorioCitaMysql implements RepositorioCita {
   }
 
   private citaAnterior(finalCita: string): string {
-    const parcialHora = parseInt(finalCita.split(':')[0]) - 1;
-    return parcialHora <= 9 ? `0${parcialHora}:00` : `${parcialHora}:00`;
+    const HORA_MENOR_DIES = 9;
+    const parcialHora = parseInt(finalCita.split(':')[0], 10) - 1;
+    return parcialHora <= HORA_MENOR_DIES
+      ? `0${parcialHora}:00`
+      : `${parcialHora}:00`;
   }
 }

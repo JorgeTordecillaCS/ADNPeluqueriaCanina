@@ -3,6 +3,7 @@ enum valorRaza {
   mediano = 50000,
   grande = 70000,
 }
+const RECARGO_SABADO = 1.25;
 
 export class CostoCita {
   readonly DIA_SABADO: number;
@@ -11,9 +12,9 @@ export class CostoCita {
   }
   public valorTotal(raza, fecha): string {
     const sobreCostoSabado = new Date(fecha).getDay();
-    let value = parseInt(valorRaza[raza]);
+    let value = parseInt(valorRaza[raza], 10);
     if (sobreCostoSabado === this.DIA_SABADO) {
-      value = value * 1.25;
+      value = value * RECARGO_SABADO;
       return `${value}`;
     }
     return `${value}`;
