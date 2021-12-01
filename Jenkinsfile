@@ -4,7 +4,10 @@ pipeline{
 		label 'Slave_Induccion'
 		}
 
-
+		tools {
+		nodejs 'NodeJS14'
+		}
+		
 		triggers {
         pollSCM('@hourly')
 		}
