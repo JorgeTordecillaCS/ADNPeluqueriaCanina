@@ -4,10 +4,7 @@ pipeline{
 		label 'Slave_Induccion'
 		}
 
-		tools {
-			nodejs 'Node14.0.0'
-		}
-		
+
 		triggers {
         pollSCM('@hourly')
 		}
@@ -23,6 +20,8 @@ pipeline{
 				steps {
                 echo '------------>Checkout desde Git Microservicio<------------'
                 checkout scm
+				sh 'npm -v'
+				sh 'node -v'
 				}
 			}
 		
@@ -33,6 +32,7 @@ pipeline{
                     sh 'npm run build'					
 				}
             }
+
             stage('test '){
                 steps {
                     sh 'npm run test:cov'					
