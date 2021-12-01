@@ -1,5 +1,4 @@
 import { ServicioRegistrarCita } from 'src/dominio/cita/servicio/servicio-registrar-cita';
-import { ServicioCancelarCita } from 'src/dominio/cita/servicio/servicio-cancelar-cita';
 import { Cita } from 'src/dominio/cita/modelo/cita';
 import { RepositorioCita } from 'src/dominio/cita/puerto/repositorio/repositorio-cita';
 import { SinonStubbedInstance } from 'sinon';
@@ -7,7 +6,6 @@ import { createStubObj } from '../../../util/create-object.stub';
 
 describe('ServicioRegistrarUsuario', () => {
   let servicioRegistrarCita: ServicioRegistrarCita;
-  let servicioCancelarCita: ServicioCancelarCita;
   let repositorioCitaStub: SinonStubbedInstance<RepositorioCita>;
 
   beforeEach(() => {
@@ -17,7 +15,6 @@ describe('ServicioRegistrarUsuario', () => {
       'borrar',
     ]);
     servicioRegistrarCita = new ServicioRegistrarCita(repositorioCitaStub);
-    servicioCancelarCita = new ServicioCancelarCita(repositorioCitaStub);
   });
 
   it('Debe retornar un error si la cita ya esta reservada', async () => {
@@ -39,13 +36,5 @@ describe('ServicioRegistrarUsuario', () => {
     await servicioRegistrarCita.ejecutar(cita);
     expect(repositorioCitaStub.guardar.getCalls().length).toBe(1);
     expect(repositorioCitaStub.guardar.calledWith(cita)).toBeTruthy();
-  });
-
-  it('Debe borrar una cita', async () => {
-    await servicioCancelarCita.ejecutar('100');
-    await servicioCancelarCita.ejecutar('101');
-    expect(repositorioCitaStub.borrar.getCalls().length).toBe(2);
-    expect(repositorioCitaStub.borrar.calledWith('100')).toBeTruthy();
-    expect(repositorioCitaStub.borrar.calledWith('101')).toBeTruthy();
   });
 });

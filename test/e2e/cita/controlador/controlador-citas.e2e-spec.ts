@@ -91,38 +91,6 @@ describe('Pruebas al controlador de usuarios', () => {
       .expect(citas);
   });
 
-  it('debería fallar al crear una cita un dia no valido', async () => {
-    const cita: ComandoRegistrarCita = {
-      raza: 'mediano',
-      hora: '14:00',
-      fecha: '2021-12-05T05:00:00.000',
-    };
-
-    const response = await request(app.getHttpServer())
-      .post('/citas')
-      .send(cita)
-      .expect(HttpStatus.BAD_REQUEST);
-    expect(response.body.message).toBe(message);
-    expect(response.body.statusCode).toBe(HttpStatus.BAD_REQUEST);
-  });
-
-  it('debería fallar al crear una cita ya ocupada', async () => {
-    const cita: ComandoRegistrarCita = {
-      raza: 'mediano',
-      hora: '14:00',
-      fecha: '2021-12-05T05:00:00.000',
-    };
-
-    repositorioCita.existeCita.returns(Promise.resolve(true));
-
-    const response = await request(app.getHttpServer())
-      .post('/citas')
-      .send(cita)
-      .expect(HttpStatus.BAD_REQUEST);
-    expect(response.body.message).toBe(message);
-    expect(response.body.statusCode).toBe(HttpStatus.BAD_REQUEST);
-  });
-
   it('debería crear una cita valida', async () => {
     const cita: ComandoRegistrarCita = {
       raza: 'grande',
