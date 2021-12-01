@@ -3,8 +3,11 @@ pipeline{
 		agent {
 		label 'Slave_Induccion'
 		}
-	
-        
+
+		tools {
+			nodejs 'Node14.0.0'
+		}
+		
 		triggers {
         pollSCM('@hourly')
 		}
