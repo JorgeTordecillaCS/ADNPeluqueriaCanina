@@ -7,5 +7,5 @@ export abstract class RepositorioCita {
     finalCita: string,
   ): Promise<boolean>;
   abstract async guardar(cita: Cita);
-  abstract async borrar(id: string);
+  abstract async borrar(id: number);
 }

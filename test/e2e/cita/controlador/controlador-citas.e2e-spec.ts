@@ -110,7 +110,7 @@ describe('Pruebas al controlador de usuarios', () => {
 
   it('debería borrar una cita', async () => {
     const cita: ComandoCancelarCita = {
-      id: '1',
+      id: 1,
     };
     const message = 'Cita borrada';
     const response = await request(app.getHttpServer())

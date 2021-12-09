@@ -1,10 +1,8 @@
 import { Cita } from 'src/dominio/cita/modelo/cita';
-import { CostoCita } from 'src/dominio/cita/modelo/costoCita';
 import { ErrorHorarioInvalido } from 'src/dominio/errores/error-horario-invalido';
 
 describe('Cita', () => {
   const _Cita = Cita as any;
-  const _CostCita = CostoCita as any;
   it('Debe fallar una cita fuera del Horario', () => {
     return expect(
       async () => new _Cita('mediano', '07:00', '2021-11-30T05:00:00.000'),
@@ -41,16 +39,5 @@ describe('Cita', () => {
     expect(cita.hora).toEqual('11:00');
     expect(cita.finalCita).toEqual('12:00');
     expect(cita.valor).toEqual('50000');
-  });
-
-  it('Debe calcular el valor segun la raza y dia', () => {
-    const costoCita = new _CostCita();
-
-    expect(costoCita.valorTotal('pequeno', '2021-12-04T05:00:00.000')).toEqual(
-      '50000',
-    );
-    expect(costoCita.valorTotal('pequeno', '2021-12-03T05:00:00.000')).toEqual(
-      '40000',
-    );
   });
 });

@@ -25,7 +25,10 @@ async function bootstrap() {
 
   const swaggerDocument = SwaggerModule.createDocument(app, swaggerOptions);
   SwaggerModule.setup('/api/doc', app, swaggerDocument);
-
+  app.enableCors({
+    origin: process.env.APPLICATION_CORS_URL,
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  });
   app.setGlobalPrefix(configService.get(EnvVariables.APPLICATION_CONTEXT_PATH));
   await app.listen(configService.get(EnvVariables.APPLICATION_PORT));
 }

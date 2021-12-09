@@ -13,10 +13,10 @@ describe('ServicioRegistrarUsuario', () => {
   });
 
   it('Debe borrar una cita', async () => {
-    await servicioCancelarCita.ejecutar('100');
-    await servicioCancelarCita.ejecutar('101');
+    await servicioCancelarCita.ejecutar(100);
+    await servicioCancelarCita.ejecutar(101);
     expect(repositorioCitaStub.borrar.getCalls().length).toBe(2);
-    expect(repositorioCitaStub.borrar.calledWith('100')).toBeTruthy();
-    expect(repositorioCitaStub.borrar.calledWith('101')).toBeTruthy();
+    expect(repositorioCitaStub.borrar.calledWith(100)).toBeTruthy();
+    expect(repositorioCitaStub.borrar.calledWith(101)).toBeTruthy();
   });
 });

@@ -4,7 +4,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { CitaEntidad } from '../../entidad/cita.entidad';
 import { Repository, Between } from 'typeorm';
 import { Injectable } from '@nestjs/common';
-
+import { citaMap } from './citaMap';
 @Injectable()
 export class RepositorioCitaMysql implements RepositorioCita {
   constructor(
@@ -24,16 +24,11 @@ export class RepositorioCitaMysql implements RepositorioCita {
   }
 
   async guardar(cita: Cita) {
-    const entidad = new CitaEntidad();
-    entidad.raza = cita.raza;
-    entidad.hora = cita.hora;
-    entidad.fecha = cita.fecha;
-    entidad.finalCita = cita.finalCita;
-    entidad.valor = cita.valor;
+    const entidad = citaMap(cita);
     await this.repositorio.save(entidad);
   }
 
-  async borrar(id: string) {
+  async borrar(id: number) {
     await this.repositorio.delete(id);
   }
 

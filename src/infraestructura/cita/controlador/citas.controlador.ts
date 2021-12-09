@@ -36,6 +36,7 @@ export class CitaControlador {
     @Response() res,
   ) {
     await this._manejadorRegistrarCita.ejecutar(comandoRegistrarCita);
+
     res.json({ message: 'Cita creada' }).status(HttpStatus.CREATED);
   }
 

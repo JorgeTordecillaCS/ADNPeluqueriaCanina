@@ -1,9 +1,9 @@
-import { IsString, IsNotEmpty } from 'class-validator';
+import { IsNotEmpty, IsNumber } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 
 export class ComandoCancelarCita {
   @IsNotEmpty()
-  @IsString()
-  @ApiProperty({ example: 'Pequeña' })
-  public id: string;
+  @IsNumber()
+  @ApiProperty({ example: 1 })
+  public id: number;
 }
